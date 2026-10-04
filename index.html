@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PlanBuild Blueprint Viewer</title>
+  </head>
+  <body>
+    <div id="app">
+      <aside id="sidebar">
+        <header>
+          <h1>Blueprint Viewer</h1>
+          <div class="row">
+            <button id="open-btn" type="button">Open file…</button>
+            <button id="sample-btn" type="button" class="secondary">Load sample</button>
+          </div>
+          <input id="file-input" type="file" accept=".blueprint,.txt" hidden />
+          <p class="hint">…or drop a <code>.blueprint</code> file anywhere.</p>
+        </header>
+
+        <section id="meta-section" hidden>
+          <h2>Blueprint</h2>
+          <dl id="meta"></dl>
+          <details id="warnings" hidden>
+            <summary></summary>
+            <ul></ul>
+          </details>
+        </section>
+
+        <section id="view-section" hidden>
+          <h2>View</h2>
+          <label class="check"><input id="models-toggle" type="checkbox" checked /> Use game models</label>
+          <div id="model-status" class="muted status"></div>
+          <label class="check"><input id="terrain-toggle" type="checkbox" checked /> Show terrain ops</label>
+          <label class="check"><input id="grid-toggle" type="checkbox" checked /> Show grid</label>
+          <div class="slider">
+            <label for="y-min">Y min <output id="y-min-out"></output></label>
+            <input id="y-min" type="range" step="0.01" />
+          </div>
+          <div class="slider">
+            <label for="y-max">Y max <output id="y-max-out"></output></label>
+            <input id="y-max" type="range" step="0.01" />
+          </div>
+          <button id="y-reset" type="button" class="secondary">Reset Y range</button>
+        </section>
+
+        <section id="pieces-section" hidden>
+          <h2>Prefabs <span id="visible-count" class="muted"></span></h2>
+          <input id="search" type="search" placeholder="Search prefabs…" autocomplete="off" />
+          <ul id="prefab-list"></ul>
+        </section>
+      </aside>
+
+      <main id="main">
+        <div id="viewer"></div>
+        <div id="viewer-overlay">
+          <button id="reset-camera" type="button">Reset camera</button>
+          <div id="drop-hint">Drop a <code>.blueprint</code> file to begin</div>
+        </div>
+        <div id="drop-overlay" hidden>Drop to load blueprint</div>
+        <section id="details">
+          <h2>Selected piece</h2>
+          <div id="details-body" class="muted">Click a piece in the viewer.</div>
+        </section>
+      </main>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
